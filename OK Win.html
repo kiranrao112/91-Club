@@ -1,0 +1,623 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>OK Win - Download App & Get ₹500 Sign Up Bonus</title>
+	<meta name="description" content="Join OK Win today! Download the OK Win app, use the OK Win login, and register to get a ₹500 bonus. Play exciting games like the OK Win lottery and earn real money!">
+	<meta name="keywords" content="ok win, ok win login, ok win game, ok win app, ok win app download, ok win lottery, ok win game download, ok win download, ok win gift code, ok win invite code, ok win register, ok win registration">
+	<link rel="icon" href="https://palevioletred-bat-733328.hostingersite.com/wp-content/uploads/2025/07/cropped-Untitled-design-4-32x32.png" sizes="32x32" />
+	<link rel="icon" href="https://palevioletred-bat-733328.hostingersite.com/wp-content/uploads/2025/07/cropped-Untitled-design-4-192x192.png" sizes="192x192" />
+	<link rel="apple-touch-icon" href="https://palevioletred-bat-733328.hostingersite.com/wp-content/uploads/2025/07/cropped-Untitled-design-4-180x180.png" />
+	<meta name="msapplication-TileImage" content="https://palevioletred-bat-733328.hostingersite.com/wp-content/uploads/2025/07/cropped-Untitled-design-4-270x270.png" />
+	<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: 'Lato', Arial, sans-serif;
+		}
+		body {
+			background-image: -webkit-linear-gradient(to bottom, rgba(249, 89, 89, 0.7), rgba(255, 154, 142, 0.7)), url('https://palevioletred-bat-733328.hostingersite.com/wp-content/uploads/2025/07/tiranga-games-image.webp');
+			background-image: linear-gradient(to bottom, rgba(249, 89, 89, 0.7), rgba(255, 154, 142, 0.7)), url('https://palevioletred-bat-733328.hostingersite.com/wp-content/uploads/2025/07/tiranga-games-image.webp');
+			background-repeat: repeat;
+			background-position: center;
+			color: #222222;
+			min-height: 100vh;
+		}
+		a {
+			color: #f95959;
+			text-decoration: none;
+			transition: color 0.3s ease;
+		}
+		a:hover {
+			color: #ff9a8e;
+		}
+		.header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 20px;
+			color: #222222;
+			background-color: #FFFFFF;
+			max-width: 1000px;
+			margin: 0 auto;
+			border-radius: 10px;
+		}
+		.header img {
+			max-width: 120px;
+			height: auto;
+		}
+		.header .buttons {
+			display: flex;
+			gap: 10px;
+			align-items: center;
+		}
+		.header .loginbtn a {
+			padding: 8px 15px;
+			border: 1px solid #f95959;
+			background-color: transparent;
+			border-radius: 1.06667rem;
+			font-size: 0.95em;
+			font-weight: bold;
+			letter-spacing: 0.05333rem;
+			height: 2em;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #f95959 !important;
+			white-space: nowrap;
+			min-width: 80px;
+			transition: background-color 0.3s ease, color 0.3s ease;
+		}
+		.header .loginbtn a:hover {
+			background-color: #f95959;
+			color: #ffffff !important;
+		}
+		.header .registerbtn a {
+			padding: 8px 15px;
+			border-radius: 1.06667rem;
+			font-size: 0.95em;
+			font-weight: bold;
+			letter-spacing: 0.05333rem;
+			height: 2em;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: -webkit-linear-gradient(90deg, #f95959 0, #ff9a8e 100%);
+			background: linear-gradient(90deg, #f95959 0, #ff9a8e 100%);
+			color: #ffffff !important;
+			white-space: nowrap;
+			min-width: 100px;
+			transition: background 0.3s ease;
+		}
+		.header .registerbtn a:hover {
+			background: linear-gradient(90deg, #ff9a8e 0, #f95959 100%);
+		}
+		.main-content {
+			background-image: -webkit-linear-gradient(to bottom, rgba(249, 89, 89, 0.7), rgba(0, 0, 0, 0.7)), url('https://palevioletred-bat-733328.hostingersite.com/wp-content/uploads/2025/07/tiranga-games-image.webp');
+			background-image: linear-gradient(to bottom, rgba(249, 89, 89, 0.7), rgba(0, 0, 0, 0.7)), url('https://palevioletred-bat-733328.hostingersite.com/wp-content/uploads/2025/07/tiranga-games-image.webp');
+			background-repeat: repeat;
+			background-position: center;
+			background-size: cover;
+			padding: 20px;
+			text-align: center;
+			max-width: 1000px;
+			margin: 0 auto;
+		}
+		.main-content .container {
+			max-width: 1000px;
+			margin: 0 auto;
+		}
+		.main-content img {
+			max-width: 150px;
+			width: 100%;
+			height: auto;
+			border-radius: 30px;
+			margin-bottom: 10px;
+		}
+		.main-content h1 {
+			color: #ffffff;
+			font-size: 36px;
+			font-weight: 700;
+			margin-bottom: 10px;
+			text-align: center;
+			letter-spacing: 0.03em;
+		}
+		.main-content p.subtitle {
+			color: #ffffff;
+			font-size: 20px;
+			font-weight: bold;
+			margin-bottom: 10px;
+			letter-spacing: 0.02em;
+		}
+		.main-content .registerbtn a {
+			padding: 10px 20px;
+			border-radius: 1.06667rem;
+			font-size: 0.9em;
+			font-weight: bold;
+			letter-spacing: 0.05333rem;
+			height: 2.5em;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: -webkit-linear-gradient(90deg, #f95959 0, #ff9a8e 100%);
+			background: linear-gradient(90deg, #f95959 0, #ff9a8e 100%);
+			color: #ffffff !important;
+			margin: 0 auto 10px;
+			transition: background 0.3s ease;
+		}
+		.main-content .registerbtn a:hover {
+			background: linear-gradient(90deg, #ff9a8e 0, #f95959 100%);
+		}
+		.main-content .loginbtn a {
+			padding: 10px 20px;
+			border: 1px solid #f95959;
+			background-color: transparent;
+			border-radius: 1.06667rem;
+			font-size: 0.9em;
+			font-weight: bold;
+			letter-spacing: 0.05333rem;
+			height: 2.5em;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #f95959 !important;
+			margin: 10px auto 20px;
+			transition: background-color 0.3s ease, color 0.3s ease;
+		}
+		.main-content .loginbtn a:hover {
+			background-color: #f95959;
+			color: #ffffff !important;
+		}
+		.toc {
+			display: none;
+			max-width: 1000px;
+			margin: 20px auto;
+			padding: 15px;
+			border: 1px solid #b2b2be;
+			border-radius: 10px;
+			background-color: #ffffff;
+		}
+		.toc h3 {
+			font-size: 18px;
+			font-weight: 700;
+			color: #222222;
+			margin-bottom: 10px;
+			text-align: left;
+			letter-spacing: 0.02em;
+		}
+		.toc ul {
+			list-style: none;
+			padding: 0;
+		}
+		.toc ul li {
+			margin-bottom: 8px;
+		}
+		.toc ul li a {
+			color: #f95959;
+			font-size: 16px;
+			font-weight: 400;
+			letter-spacing: 0.02em;
+			transition: color 0.3s ease;
+		}
+		.toc ul li a:hover {
+			color: #ff9a8e;
+			text-decoration: underline;
+		}
+		.toc-toggle {
+			display: block;
+			max-width: 300px;
+			margin: 20px auto;
+			padding: 8px 16px;
+			border-radius: 1.06667rem;
+			font-size: 0.85em;
+			font-weight: bold;
+			letter-spacing: 0.05333rem;
+			background: -webkit-linear-gradient(90deg, #f95959 0, #ff9a8e 100%);
+			background: linear-gradient(90deg, #f95959 0, #ff9a8e 100%);
+			color: #ffffff !important;
+			text-align: center;
+			cursor: pointer;
+			transition: background 0.3s ease;
+		}
+		.toc-toggle:hover {
+			background: linear-gradient(90deg, #ff9a8e 0, #f95959 100%);
+		}
+		.table-container {
+			max-width: 1000px;
+			margin: 0 auto 20px;
+			overflow-x: auto;
+		}
+		.info-table {
+			width: 100%;
+			border-collapse: collapse;
+			text-align: left;
+			background-color: transparent;
+			border: 1px solid #f95959;
+			border-radius: 10px;
+			color: #222222;
+		}
+		.info-table th {
+			font-weight: 700;
+			border: 1px solid #f95959;
+			padding: 10px;
+			color: #222222;
+		}
+		.info-table td {
+			font-weight: 400;
+			border: 1px solid #f95959;
+			padding: 10px;
+			color: #222222;
+		}
+		.blog-section {
+			max-width: 1000px;
+			margin: 0 auto;
+			padding: 20px;
+			background-color: #ffffff;
+			border-radius: 10px;
+			color: #222222;
+		}
+		.blog-section h2 {
+			background: -webkit-linear-gradient(90deg, #f95959 0, #ff9a8e 100%);
+			background: linear-gradient(90deg, #f95959 0, #ff9a8e 100%);
+			color: #ffffff;
+			font-size: 24px;
+			font-weight: 700;
+			padding: 10px;
+			border-radius: 5px;
+			margin-bottom: 15px;
+			text-align: left;
+			letter-spacing: 0.03em;
+		}
+		.blog-section p {
+			font-size: 18px;
+			line-height: 1.6;
+			color: #222222;
+			margin-bottom: 15px;
+			text-align: left;
+			letter-spacing: 0.02em;
+		}
+		.blog-section ol, .blog-section ul {
+			padding-left: 20px;
+			margin-bottom: 15px;
+		}
+		.blog-section ol li, .blog-section ul li {
+			font-size: 18px;
+			line-height: 1.6;
+			color: #222222;
+			margin-bottom: 8px;
+			letter-spacing: 0.02em;
+		}
+		.blog-section img {
+			max-width: 100%;
+			height: auto;
+			border-radius: 10px;
+			margin: 10px 0;
+			display: block;
+		}
+		@media (max-width: 1000px) {
+			.header, .main-content, .main-content .container, .toc, .table-container, .blog-section {
+				max-width: 100%;
+				padding: 15px;
+			}
+			.main-content img {
+				max-width: 100%;
+			}
+		}
+		@media (max-width: 480px) {
+			.header .loginbtn a,
+			.header .registerbtn a {
+				padding: 6px 10px;
+				font-size: 0.85em;
+				min-width: 70px;
+			}
+			.main-content .registerbtn a,
+			.main-content .loginbtn a {
+				padding: 6px 10px;
+				font-size: 0.85em;
+			}
+			.main-content h1 {
+				font-size: 28px;
+			}
+			.main-content p.subtitle {
+				font-size: 18px;
+			}
+			.toc-toggle {
+				padding: 6px 12px;
+				font-size: 0.8em;
+				max-width: 250px;
+			}
+			.blog-section h2 {
+				font-size: 20px;
+			}
+			.blog-section p, .blog-section ol li, .blog-section ul li {
+				font-size: 16px;
+			}
+			.info-table th, .info-table td {
+				padding: 8px;
+				font-size: 14px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="header">
+		<div>
+			<img decoding="async" title="OK Win Logo" src="https://palevioletred-bat-733328.hostingersite.com/wp-content/uploads/2025/07/h5setting_20240110060804ufv8.png" alt="OK Win Logo" width="120" height="40" />
+		</div>
+		<div class="buttons">
+			<div class="loginbtn">
+				<a href="https://ok-winlogin.com" rel="noopener" target="_blank">Log in</a>
+			</div>
+			<div class="registerbtn">
+				<a href="https://ok-winlogin.com" rel="noopener" target="_blank">Register</a>
+			</div>
+		</div>
+	</div>
+	<div class="main-content">
+		<div class="container">
+			<img decoding="async" src="https://palevioletred-bat-733328.hostingersite.com/wp-content/uploads/2025/07/cropped-Untitled-design-4.png" alt="OK Win Official" width="150" height="157" />
+			<h1><strong>OK Win – Play & Win Big</strong></h1>
+			<p class="subtitle"><strong>Register Now & Get Rs.500 Bonus After 1st Recharge</strong></p>
+			<div class="registerbtn">
+				<a href="https://ok-winlogin.com" rel="noopener" target="_blank">Register Now</a>
+			</div>
+			<div class="loginbtn">
+				<a href="https://ok-winlogin.com" rel="noopener" target="_blank">Login Now</a>
+			</div>
+		</div>
+		<div class="toc-toggle" onclick="toggleTOC()">Show Table of Contents</div>
+		<div class="toc" id="toc">
+			<h3>Table of Contents</h3>
+			<ul>
+				<li><a href="#what-is-okwin">What Is OK Win?</a></li>
+				<li><a href="#how-to-register">How to Register on OK Win?</a></li>
+				<li><a href="#how-to-login">How to Log In to OK Win?</a></li>
+				<li><a href="#how-to-download">How to Download the OK Win App?</a></li>
+				<li><a href="#how-to-play">How to Play and Earn Money?</a></li>
+				<li><a href="#how-to-refer">How to Refer and Earn Money?</a></li>
+				<li><a href="#how-to-deposit">How to Deposit Money?</a></li>
+				<li><a href="#how-to-withdraw">How to Withdraw Money?</a></li>
+				<li><a href="#okwin-teacher">OK Win Teacher Contact</a></li>
+				<li><a href="#okwin-agent">How to Become an OK Win Agent?</a></li>
+				<li><a href="#gift-codes">Using OK Win Gift Codes</a></li>
+				<li><a href="#okwin-hack">Is There an OK Win Hack?</a></li>
+				<li><a href="#explore-okwin">Explore More About OK Win</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="blog-section">
+		<div class="table-container">
+			<table class="info-table">
+				<tbody>
+					<tr>
+						<th>App Name</th>
+						<td>OK Win</td>
+					</tr>
+					<tr>
+						<th><strong>OK Win</strong> Invite Code</th>
+						<td><strong>443286233658</strong></td>
+					</tr>
+					<tr>
+						<th>Gaming Categories</th>
+						<td>50+</td>
+					</tr>
+					<tr>
+						<th>OK Win APK Size</th>
+						<td>8.6 MB</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<h2 id="what-is-okwin">What Is OK Win?</h2>
+		<p><strong>OK Win</strong> is a premier online gaming platform tailored for Indian players, offering a diverse range of games like color prediction, the <strong>OK Win lottery</strong>, slots, and casino classics. Accessible via the <strong>OK Win app</strong> or its official website, it features over 50 gaming categories, a user-friendly interface, secure transactions, and 24/7 support. Whether you're a beginner or a pro, an <strong>OK Win game</strong> provides thrilling opportunities to win real money.</p>
+
+		<h2 id="how-to-register">How to Register on OK Win?</h2>
+		<p>Starting your journey with <strong>OK Win registration</strong> is quick and rewards you with a ₹500 bonus. Here’s how to join:</p>
+		<ol>
+			<li>Visit the official website at <a href="https://ok-winlogin.com">ok-winlogin.com</a> or download the <strong>OK Win app</strong>.</li>
+			<li>Click the “Register” button to access the <strong>OK Win register</strong> page.</li>
+			<li>Enter your mobile number, create a strong password, and input the <strong>OK Win invite code</strong> 443286233658 for a bonus.</li>
+			<li>Agree to the privacy policy and submit your details.</li>
+			<li>Complete your first deposit to unlock the ₹500 bonus.</li>
+		</ol>
+		<img src="https://via.placeholder.com/600x300?text=Registration+Screenshot" alt="OK Win Registration Screenshot" />
+		<p><strong>OK Win registration</strong> takes just minutes, setting you up for exciting gameplay!</p>
+
+		<h2 id="how-to-login">How to Log In to OK Win?</h2>
+		<p>Accessing your account with an <strong>OK Win login</strong> is simple and secure:</p>
+		<ol>
+			<li>Open the <strong>OK Win app</strong> or visit <a href="https://ok-winlogin.com">ok-winlogin.com</a>.</li>
+			<li>Click the “Login” button on the homepage.</li>
+			<li>Enter your registered mobile number and password.</li>
+			<li>Tap “Login” to access your gaming dashboard.</li>
+			<li>Forgot your password? Use the “Recover Account” option to reset via OTP.</li>
+		</ol>
+		<img src="https://via.placeholder.com/600x300?text=Login+Screenshot" alt="OK Win Login Screenshot" />
+		<p>An <strong>OK Win login</strong> ensures you’re ready to play in seconds!</p>
+
+		<h2 id="how-to-download">How to Download the OK Win App?</h2>
+		<p>For seamless gaming, follow these steps for an <strong>OK Win app download</strong>:</p>
+		<ol>
+			<li>Visit <a href="https://ok-winlogin.com">ok-winlogin.com</a> on your mobile browser.</li>
+			<li>Find the “Download” button for the <strong>OK Win game download</strong>.</li>
+			<li>Click to start the <strong>OK Win download</strong> of the APK file.</li>
+			<li>Enable “Unknown Sources” in Settings > Security on your Android device.</li>
+			<li>Install the APK from your downloads and launch the <strong>OK Win app</strong>.</li>
+			<li>Disable “Unknown Sources” after installation for safety.</li>
+		</ol>
+		<img src="https://via.placeholder.com/600x300?text=Download+Screenshot" alt="OK Win Download Screenshot" />
+		<p>The <strong>OK Win app download</strong> makes gaming convenient anywhere!</p>
+
+		<h2 id="how-to-play">How to Play and Earn Money?</h2>
+		<p>Want to know how to play an <strong>OK Win game</strong>? Here’s how to start winning:</p>
+		<ol>
+			<li>Log in using your <strong>OK Win login</strong> credentials.</li>
+			<li>Browse games like the <strong>OK Win lottery</strong>, color prediction, or slots.</li>
+			<li>Place bets based on your budget and game rules.</li>
+			<li>Wait for results, which depend on luck and strategy.</li>
+			<li>Withdraw winnings via the “Wallet” section.</li>
+			<li>Try low-stake bets to learn game patterns and boost your chances.</li>
+		</ol>
+		<p>Each <strong>OK Win game</strong> offers exciting ways to earn real cash!</p>
+
+		<h2 id="how-to-refer">How to Refer and Earn Money?</h2>
+		<p>Earn extra income with the <strong>OK Win invite code</strong> referral program:</p>
+		<ol>
+			<li>Log in to your <strong>OK Win app</strong>.</li>
+			<li>Go to the “Promotion” tab to find your unique <strong>OK Win invite code</strong> or link.</li>
+			<li>Share it via WhatsApp, social media, or other platforms.</li>
+			<li>Earn commissions when friends register and play using your code.</li>
+			<li>Use earnings to play more games or withdraw to your bank.</li>
+		</ol>
+		<p>Inviting friends with an <strong>OK Win invite code</strong> is a smart way to earn!</p>
+
+		<h2 id="how-to-deposit">How to Deposit Money?</h2>
+		<p>Funding your account for an <strong>OK Win game</strong> is fast and secure:</p>
+		<ol>
+			<li>Access your account with an <strong>OK Win login</strong>.</li>
+			<li>Navigate to the “Wallet” section and select “Deposit.”</li>
+			<li>Choose a payment method (UPI, Paytm, bank transfer, or crypto).</li>
+			<li>Enter the deposit amount and confirm.</li>
+			<li>Funds are available instantly for betting.</li>
+		</ol>
+		<img src="https://via.placeholder.com/600x300?text=Deposit+Screenshot" alt="OK Win Deposit Screenshot" />
+		<p>Get ready to play with a quick deposit!</p>
+
+		<h2 id="how-to-withdraw">How to Withdraw Money?</h2>
+		<p>Cashing out your winnings from <strong>OK Win</strong> is hassle-free:</p>
+		<ol>
+			<li>Log in to your <strong>OK Win app</strong> account.</li>
+			<li>Go to the “Wallet” section and click “Withdraw.”</li>
+			<li>Select a payment method (UPI, Paytm, or bank transfer).</li>
+			<li>Enter the withdrawal amount and confirm.</li>
+			<li>Expect funds in your account within minutes.</li>
+		</ol>
+		<img src="https://via.placeholder.com/600x300?text=Withdraw+Screenshot" alt="OK Win Withdraw Screenshot" />
+		<p>Enjoy fast withdrawals with <strong>OK Win</strong>!</p>
+
+		<h2 id="okwin-teacher">OK Win Teacher Contact</h2>
+		<p>Need expert tips for your <strong>OK Win game</strong>? Connect with an OK Win teacher:</p>
+		<ol>
+			<li>Visit <a href="https://ok-winlogin.com">ok-winlogin.com</a> or the <strong>OK Win app</strong>.</li>
+			<li>Find the Telegram support link in the “Contact” section.</li>
+			<li>Message a teacher for advice on games like the <strong>OK Win lottery</strong>.</li>
+		</ol>
+		<p>An OK Win teacher can help you master the platform!</p>
+
+		<h2 id="okwin-agent">How to Become an OK Win Agent?</h2>
+		<p>Turn gaming into income by becoming an <strong>OK Win</strong> agent:</p>
+		<ol>
+			<li>Log in to your <strong>OK Win app</strong> account.</li>
+			<li>Contact support via the official website to apply for an agent role.</li>
+			<li>Complete the agent registration process.</li>
+			<li>Share your <strong>OK Win invite code</strong> to attract new players.</li>
+			<li>Earn commissions based on their activity.</li>
+		</ol>
+		<p>Being an <strong>OK Win</strong> agent is a great way to earn extra!</p>
+
+		<h2 id="gift-codes">Using OK Win Gift Codes</h2>
+		<p>Boost your balance with an <strong>OK Win gift code</strong> for extra rewards:</p>
+		<ol>
+			<li>Log in via <strong>OK Win login</strong>.</li>
+			<li>Go to the “Promotion” or “Giftcode” section.</li>
+			<li>Enter your <strong>OK Win gift code</strong> in the provided field.</li>
+			<li>Click “Receive” to claim bonus cash or credits.</li>
+		</ol>
+		<p>Check the official Telegram channel or website for daily <strong>OK Win gift code</strong> updates!</p>
+
+		<h2 id="okwin-hack">Is There an OK Win Hack?</h2>
+		<p>Curious about an <strong>OK Win</strong> hack? Hacks are not legitimate and can lead to account bans due to the platform’s advanced encryption. Instead, try these strategies:</p>
+		<ol>
+			<li>Start with small bets to learn game patterns.</li>
+			<li>Redeem an <strong>OK Win gift code</strong> for extra funds.</li>
+			<li>Consult an OK Win teacher for tips on games like color prediction.</li>
+		</ol>
+		<p>Play smart with the <strong>OK Win app</strong> for a safe, rewarding experience!</p>
+
+		<h2 id="explore-okwin">Explore More About OK Win</h2>
+		<p>Discover the key features of <strong>OK Win</strong> to enhance your gaming experience:</p>
+		<ul>
+			<li><strong>OK Win</strong>: India’s leading platform for lottery, slots, and color prediction games.</li>
+			<li><strong>OK Win Login</strong>: Securely access your account via the app or website.</li>
+			<li><strong>OK Win Game</strong>: Enjoy 50+ games, including casino classics and lotteries.</li>
+			<li><strong>OK Win App</strong>: A lightweight, user-friendly app for gaming on the go.</li>
+			<li><strong>OK Win App Download</strong>: Get the app from the official website for Android or iOS.</li>
+			<li><strong>OK Win Lottery</strong>: Play games like Win Go and K3 for big rewards.</li>
+			<li><strong>OK Win Game Download</strong>: Download the app to access all games instantly.</li>
+			<li><strong>OK Win Download</strong>: Install the APK for a seamless mobile experience.</li>
+			<li><strong>OK Win Gift Code</strong>: Redeem daily codes for bonus cash or free plays.</li>
+			<li><strong>OK Win Invite Code</strong>: Share your code to earn referral commissions.</li>
+			<li><strong>OK Win Register</strong>: Sign up quickly to start playing and earning.</li>
+			<li><strong>OK Win Registration</strong>: Complete the easy process to unlock bonuses.</li>
+		</ul>
+		<p>Explore <strong>OK Win</strong> for fun, rewards, and a secure gaming adventure!</p>
+	</div>
+	<script>
+		function toggleTOC() {
+			const toc = document.getElementById('toc');
+			const toggleButton = document.querySelector('.toc-toggle');
+			if (toc.style.display === 'none' || toc.style.display === '') {
+				toc.style.display = 'block';
+				toggleButton.textContent = 'Hide Table of Contents';
+			} else {
+				toc.style.display = 'none';
+				toggleButton.textContent = 'Show Table of Contents';
+			}
+		}
+		document.querySelectorAll('.loginbtn a').forEach(button => {
+			button.addEventListener('click', () => {
+				console.log('Login button clicked');
+				// Add actual login navigation logic here
+			});
+		});
+		document.querySelectorAll('.registerbtn a').forEach(button => {
+			button.addEventListener('click', () => {
+				console.log('Register button clicked');
+				// Add actual register navigation logic here
+			});
+		});
+	</script>
+</body>
+</html>
